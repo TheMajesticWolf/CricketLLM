@@ -1,0 +1,363 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Baloo 2", sans-serif;
+}
+
+html {
+	background-color: rgb(33, 33, 33);
+}
+
+/*********************************** NAVBAR **********************************/
+.navbar-container {
+	color: white;
+	/* width: 85vw;
+	height: 10vh;
+
+	position: fixed;
+	right: 0;
+	top: 0; */
+
+}
+
+.navbar {
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	font-size: 2.5rem;
+}
+
+
+.navbar li {
+	list-style: none;
+	
+}
+
+
+.navbar li a {
+	color: white;
+	text-decoration: none;
+	padding: 0px 10px 0px 10px;
+	
+}
+
+
+.navbar li a:hover {
+	color: rgb(251, 218, 175);
+	
+}
+/*********************************** NAVBAR **********************************/
+
+
+/*********************************** LEFT PANEL **********************************/
+
+.left-panel-container {
+	height: 100vh;
+	width: 15vw;
+	position: fixed;
+	
+	color: white;
+	font-size: 1.5rem;
+
+
+	overflow-y: auto;
+
+	background-color: rgb(23, 23, 23);
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.new-chat-button-box {
+	width: 100%;
+	/* height: 10%; */
+}
+
+.new-chat-button {
+	width: 90%;
+	margin: 10px auto 0px auto;
+
+}
+
+.new-chat-button-box button {
+	font-size: 1.25rem;
+	width: 100%;
+
+
+	color: antiquewhite;
+
+	background: none;
+	outline: transparent;
+	border: none;
+
+	cursor: pointer;
+}
+
+.new-chat-button button:hover {
+	color: aquamarine;
+}
+
+.previous-chats {
+	
+	height: 90%;
+	width: 100%;
+	
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+}
+
+
+.chat-item {
+	/* width: 100%; */
+	/* border: 1px solid red; */
+	margin: 10px 0px 10px 0px;
+}
+
+.chat-item a {
+	text-decoration: none;
+	color: antiquewhite;
+}
+
+.chat-item a:hover {
+	text-decoration: none;
+	color: lightblue;
+}
+
+
+
+
+
+/*********************************** LEFT PANEL **********************************/
+
+
+
+
+
+/*********************************** CENTER PANEL **********************************/
+.center-panel-container {
+	position: fixed;
+	height: 100vh;
+	width: 85vw;
+
+	bottom: 0;
+	left: 15vw;
+	/* background-color: rgb(71, 68, 64); */
+	background-color: rgb(33, 33, 33);
+	/* background-color: rgb(3, 2, 27); */
+
+	display: flex;
+	flex-direction: column;
+
+	overflow-y: auto;
+	
+	
+	
+}
+
+.input-box {
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-bottom: 20px;
+	margin-top: 10px;
+
+	/* position: fixed;
+	bottom: 0;
+	left: 15vw;
+	width: 100%; */
+	
+
+}
+
+
+
+.input-box form {
+	width: 100%;
+	text-align: center;
+}
+
+.input-box input {
+	
+	font-size: 1.75rem;
+	width: 90%;
+	/* margin: 0px auto 0px auto; */
+
+	color: antiquewhite;
+
+	background: none;
+	outline: transparent;
+	border: none;
+	border-bottom: 2px solid purple;
+}
+
+.input-box button {
+	font-size: 1.75rem;
+	font-weight: bolder;
+	background: none;
+	outline: transparent;
+	border: none;
+	border-bottom: 2px solid purple;
+	cursor: pointer;
+}
+
+.input-box button:hover {
+	color: lime;
+}
+
+
+.response-box {
+	margin: 10px;
+    padding: 10px;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+
+	font-size: 1.25rem;
+	color: antiquewhite;
+
+
+
+}
+
+.response-origin h4 {
+	text-decoration: underline;
+	color: white;
+}
+
+.response {
+	/* border: 1px solid red; */
+	margin: 10px;
+	padding: 10px;
+	width: 70%;
+	/* background-color: grey; */
+
+}
+
+
+/*********************************** CENTER PANEL **********************************/
+
+
+/*********************************** AUTH BOX **********************************/
+.login-container {
+	width: 30%;
+	margin: auto;
+	/* border: 2px solid white; */
+	padding: 10px;
+
+	position: absolute;
+	top: 30%;
+	left: 36%
+
+}
+
+.auth-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	margin: 0px 0px 30px 0px;
+
+}
+
+.auth-box label {
+	font-size: 1.75rem;
+	font-weight: bolder;
+	color: wheat;
+}
+
+.auth-box input {
+	font-size: 1.45rem;
+	padding: 2px;
+	color: whitesmoke;
+	
+	border: none;
+	outline: none;
+	background: transparent;
+	border-bottom: 2px solid green;
+}
+
+.auth-box button {
+	font-size: 1.45rem;
+	border: 2px solid grey;
+	color: whitesmoke;
+	outline: none;
+	background: transparent;
+	cursor: pointer;
+}
+
+.link-box {
+	text-align: center;
+	font-size: 1.125rem;
+}
+
+.link-box a {
+	text-decoration: none;
+	color: rgb(0, 193, 207);
+}
+
+.link-box a:hover {
+	text-decoration: none;
+	color: rgb(208, 255, 0);
+	text-decoration: underline;
+}
+
+/*********************************** AUTH BOX **********************************/
+
+
+
+
+/*********************************** POINTS TABLE **********************************/
+
+.points-table-container {
+	
+	
+	
+	display: flex;
+	flex-direction: column-reverse;
+	justify-content: center;
+	align-items: center;
+	
+	border: 2px solid blue;
+
+	margin: 10px;
+	
+	padding: 10px;
+	color: antiquewhite;
+	
+}
+
+.points-table-container table {
+
+	width: 100%;
+	text-align: center;
+	font-size: 20px;
+
+}
+
+.points-table {
+	width: 100%;
+	border: 2px solid red;
+	margin: 10px;
+}
+
+.points-table h3 {
+	
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+
+}
+
+
+/*********************************** POINTS TABLE **********************************/
+

@@ -1,0 +1,333 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400..800&display=swap');
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "Baloo 2", sans-serif;
+}
+
+html {
+	background-color: rgb(33, 33, 33);
+	
+
+}
+
+.login-container {
+	background: transparent;
+	backdrop-filter: blur(50px);
+	border: 2px solid white;
+	border-radius: 10px;
+}
+
+button {
+	border-radius: 10px;
+
+}
+
+.overall-container {
+	height: 100vh;
+	display: flex;
+	flex-direction: row;
+
+}
+
+
+
+.title {
+	text-align: center;
+	color: bisque;
+	font-size: 25px;
+	height: 15%;
+}
+
+.response-box {
+	height: 75%;
+	overflow-y: scroll;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+
+}
+
+.response-item {
+	/* background-color: cyan; */
+	border: 2px solid oldlace;
+	border-radius: 10px;
+
+	margin-bottom: 50px;
+
+	font-size: 23px;
+
+	width: 80%;
+	color: antiquewhite;
+
+}
+
+.response-output {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	margin: 20px;
+}
+
+.input-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	/* margin-bottom: 20px;
+	margin-top: 10px; */
+	width: 100%;
+	height: 10%;
+  }
+
+.input-box form {
+	width: 100%;
+	text-align: center;
+}
+
+.input-box input,
+.input-box textarea,
+.input-box select {
+
+	font-size: 1.75rem;
+	width: 90%;
+	/* margin: 0px auto 0px auto; */
+
+	color: antiquewhite;
+
+	background: none;
+	outline: transparent;
+	border: none;
+	border-bottom: 2px solid purple;
+}
+
+
+.input-box button {
+	font-size: 1.75rem;
+	font-weight: bolder;
+	background: none;
+	outline: transparent;
+	border: none;
+	border-bottom: 2px solid purple;
+	cursor: pointer;
+	color: white;
+}
+
+.input-box button:hover {
+	color: lime;
+}
+
+
+.loading-box {
+	font-size: 30px;
+	color: orange;
+}
+
+
+
+/*********************************** POINTS TABLE **********************************/
+
+.points-table-container {
+	
+	
+	
+	display: flex;
+	/* flex-direction: column-reverse; */
+	justify-content: center;
+	align-items: center;
+	
+	margin: 10px;
+	
+	padding: 10px;
+	color: antiquewhite;
+	
+}
+
+.points-table-container table {
+
+	width: 100%;
+	text-align: center;
+	font-size: 20px;
+	border-collapse: collapse;
+
+}
+
+.points-table-container th,
+.points-table-container td {
+	border: 2px solid rgb(165, 59, 21);
+}
+
+/* .points-table-container table tr {
+	border: 2px solid red;
+} */
+
+.points-table {
+	width: 100%;
+	/* border: 2px solid red; */
+	border-radius: 10px;
+	margin: 10px;
+}
+
+.points-table h3 {
+	
+	font-size: 30px;
+	font-weight: bold;
+	text-align: center;
+
+}
+
+
+/*********************************** POINTS TABLE **********************************/
+
+.left-panel-container {
+	/* height: 90%; */
+	/* border: 2px solid green; */
+	background-color: rgb(23, 23, 23);
+
+	display: flex;
+	/* align-items: center; */
+	/* justify-content: center; */
+	flex-direction: column; 
+	width: 10%;
+}
+
+.navigation-menu {
+	display: flex;
+	flex-direction: column;
+}
+
+.navigation-box,
+.previous-chat-box {
+	padding: 10px;
+}
+
+.navigation-box button,
+.previous-chat-box button {
+	color: antiquewhite;
+	font-size: 1.25rem;
+	background: transparent;
+	outline: none;
+	border: none;
+	width: 100%;
+	cursor: pointer;
+}
+
+.navigation-box button:hover {
+	color: greenyellow
+}
+
+.previous-chats-menu {
+	overflow-y: scroll;
+}
+
+
+.center-panel-container {
+	width: 90%;
+	/* background-image: url("/home/aditya/.cache/current_background_image"); */
+	/* background-image: url("https://i.redd.it/meovuwgzde361.png"); */
+	/* background-image: url("https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c0d9807e-3e3d-484d-be8b-48246b5967e3/dgqkwzf-235267be-585c-4c79-8910-c2b0c186724a.jpg/v1/fill/w_444,h_250,q_70,strp/cricket_by_herrypaul_dgqkwzf-250t.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTQyIiwicGF0aCI6IlwvZlwvYzBkOTgwN2UtM2UzZC00ODRkLWJlOGItNDgyNDZiNTk2N2UzXC9kZ3Frd3pmLTIzNTI2N2JlLTU4NWMtNGM3OS04OTEwLWMyYjBjMTg2NzI0YS5qcGciLCJ3aWR0aCI6Ijw9OTYzIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.ZkSpZ2oQFdnR0xkK7p-1NJkOdfj_42eeeiIB_RQuDUM"); */
+	/* background-position: center; */
+	/* background-repeat: no-repeat; */
+	/* background-size: cover; */
+	/* backdrop-filter: invert(200px); */
+}
+
+
+.video-box {
+	/* border: 2px solid magenta; */
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 10px 0 10px 0;
+	padding: 10px 0 10px 0;
+
+}
+
+.video-box a {
+	color: burlywood;
+}
+
+
+
+/*********************************** AUTH BOX **********************************/
+.login-container {
+	width: 30%;
+	margin: auto;
+	/* border: 2px solid white; */
+	padding: 10px;
+
+	position: absolute;
+	top: 30%;
+	left: 36%
+
+}
+
+.auth-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	margin: 0px 0px 30px 0px;
+
+}
+
+.auth-box label {
+	font-size: 1.75rem;
+	font-weight: bolder;
+	color: wheat;
+}
+
+.auth-box input {
+	font-size: 1.45rem;
+	padding: 2px;
+	color: whitesmoke;
+	
+	border: none;
+	outline: none;
+	background: transparent;
+	border-bottom: 2px solid green;
+}
+
+.auth-box button {
+	font-size: 1.45rem;
+	border: 2px solid grey;
+	color: whitesmoke;
+	outline: none;
+	background: transparent;
+	cursor: pointer;
+}
+
+.link-box {
+	text-align: center;
+	font-size: 1.125rem;
+}
+
+.link-box a {
+	text-decoration: none;
+	color: rgb(0, 193, 207);
+}
+
+.link-box a:hover {
+	text-decoration: none;
+	color: rgb(208, 255, 0);
+	text-decoration: underline;
+}
+
+/*********************************** AUTH BOX **********************************/
+
+.previous-chats-container {
+
+	/* overflow: scroll; */
+}
+/* 
+.previous-chats {
+	overflow: scroll;
+	
+} */
