@@ -9,9 +9,8 @@ Cricket LLM is a web application powered by an LLM model with Retrival Augmented
 
 ## Creating the embeddings
 - There are around 15000 embeddings (vectors) each of shape (384, ) along with the corrosponding contexts. The embeddings were created using the all-MiniLM-L6-v2 embedding model from the sentence-transformers library in python.
-- The embeddings were locally generated on a machine running Arch Linux, utilizing the NVIDIA GTX 1050 (4GB VRAM Notebook variant) with a batch size of 384.
-- The dataset will be uploaded shortly
-
+- The embeddings were locally generated on a machine running Arch Linux (btw), utilizing the NVIDIA GTX 1050 (4GB VRAM Notebook variant) with a batch size of 384.
+- To view the dataset in a good format, try loading it into a pandas dataframe
 
 ## Features
 
