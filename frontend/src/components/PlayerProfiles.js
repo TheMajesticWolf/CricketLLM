@@ -9059,9 +9059,6 @@ const IPLPointsTable = () => {
 
 	names.sort()
 
-	let clearChats = () => {
-		setResponseItems([])
-	}
 
 
 	const fetchDataFromServer = async (playerName) => {
@@ -9097,7 +9094,7 @@ const IPLPointsTable = () => {
 	return (
 		<div className="overall-container">
 
-			<LeftPanel clearChats={clearChats}/>
+			<LeftPanel setResponseItems={setResponseItems}/>
 
 
 			<div className="center-panel-container">

@@ -39,9 +39,7 @@ const IPLPointsTable = () => {
 		setIsInputDisabled(false)
 	}
 
-	let clearChats = () => {
-		setResponseItems([])
-	}
+
 
 
 	const handleSubmit = (e) => {
@@ -60,7 +58,7 @@ const IPLPointsTable = () => {
 	return (
 		<div className="overall-container">
 
-			<LeftPanel clearChats={clearChats} />
+			<LeftPanel setResponseItems={setResponseItems} />
 
 
 			<div className="center-panel-container">
