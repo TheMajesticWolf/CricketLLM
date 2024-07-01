@@ -52,3 +52,15 @@ To stay updated with cricket news:
 1. Check out the latest news section.
 2. Browse through the most recent articles and updates in the world of cricket.
 
+
+### Running the project
+1. ```git clone https://github.com/TheMajesticWolf/CricketLLM.git```
+2. ```cd backend```
+3. ```echo "MONGO_URI={Your MongoDB URI}" > .env```
+4. ```npm i```
+5. ```node_modules/.bin/nodemon server.js```
+6. ```cd ../frontend```
+7. ```npm i```
+8. ```npm start```
+
+
