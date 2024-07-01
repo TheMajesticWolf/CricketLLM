@@ -6,7 +6,6 @@ import sys
 
 from sentence_transformers import SentenceTransformer, util
 
-given_question = json.loads(sys.stdin.read())["question"]
 
 chunks_and_embeddings_df = pd.read_json("/home/aditya/Desktop/Aditya/cricket-llm/venv/combined_embeddings.json")
 

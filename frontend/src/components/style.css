@@ -322,8 +322,8 @@ button {
 
 /*********************************** AUTH BOX **********************************/
 
-.previous-chats-container {
-
+.previous-chat-box {
+	display: flex;
 	/* overflow: scroll; */
 }
 /* 

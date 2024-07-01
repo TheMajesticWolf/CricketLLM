@@ -2,14 +2,14 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const RenderOutput = (props) => {
+const RenderOutput = ({ frontendList }) => {
 
 	return (
 
 		<>
 
 			{
-				props["frontendList"].map((object, idx) => (
+				frontendList.map((object, idx) => (
 
 					<div className="response-item" key={idx}>
 

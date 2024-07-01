@@ -24,7 +24,7 @@ const LoginPage = () => {
 		let jsonData = await response.json()
 
 		if (jsonData.success) {
-			localStorage.setItem("username", username)
+			localStorage.setItem("user_id", jsonData["user_id"])
 			navigate("/chat")
 		}
 		else {
@@ -38,8 +38,7 @@ const LoginPage = () => {
 			alert("Enter valid data")
 			return
 		}
-		// sendDataToServer()
-		navigate("/chat")
+		sendDataToServer()
 		localStorage.setItem("username", username)
 		setUsername("")
 		setPassword("")

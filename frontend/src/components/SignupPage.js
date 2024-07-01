@@ -10,7 +10,7 @@ const SignupPage = () => {
 
 	const sendDataToServer = async () => {
 
-		let response = await fetch("http://localhost:4269/signup", {
+		let response = await fetch("http://localhost:6969/signup", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
