@@ -9062,7 +9062,7 @@ const IPLPointsTable = () => {
 
 
 	const fetchDataFromServer = async (playerName) => {
-		let response = await fetch(`http://localhost:6969/api/get-player-profile`, {
+		let response = await fetch(`http://localhost:6969/api/fetch/get-player-profile`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"

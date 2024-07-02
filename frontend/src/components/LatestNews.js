@@ -27,7 +27,7 @@ const LatestNews = () => {
 
 	const fetchDataFromServer = async (matchType) => {
 		
-		let response = await fetch("http://localhost:6969/api/fetch-latest-news")
+		let response = await fetch("http://localhost:6969/api/fetch/fetch-latest-news")
 
 		let jsonData = await response.json()
 		setResponseItems(responseItems => [...responseItems, jsonData["response"]])

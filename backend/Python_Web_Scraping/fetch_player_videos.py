@@ -30,4 +30,4 @@ for item in videosSearch.result()["result"]:
 
 
 
-sys.stdout.write(json.dumps({"output": to_send, "return_format": "videos_of_player", "question": userQuestion}))
+sys.stdout.write(json.dumps({"output": to_send[:3], "return_format": "videos_of_player", "question": userQuestion}))

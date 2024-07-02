@@ -23,7 +23,7 @@ const IPLPointsTable = () => {
 	}, [responseItems])
 
 	const fetchDataFromServer = async (matchType) => {
-		let response = await fetch(`http://localhost:6969/api/fetch-points-table`, {
+		let response = await fetch(`http://localhost:6969/api/fetch/fetch-points-table`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"

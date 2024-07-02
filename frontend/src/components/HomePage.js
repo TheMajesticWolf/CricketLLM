@@ -36,7 +36,7 @@ const HomePage = () => {
 	useEffect(() => {
 
 		let fetchDataFromServer = async () => {
-			let response = await fetch(`http://localhost:6969/api/fetch-chat-ids/${localStorage.getItem("user_id")}`)
+			let response = await fetch(`http://localhost:6969/api/db/fetch-chat-ids/${localStorage.getItem("user_id")}`)
 			let jsonData = await response.json()
 			
 			// console.log(jsonData["response"])
@@ -66,7 +66,7 @@ const HomePage = () => {
 
 				// console.log(newCurrentChatIdx, currentChatIndex)
 
-				let response = await fetch(`http://localhost:6969/api/fetch-chat/${currentChatIndex}`)
+				let response = await fetch(`http://localhost:6969/api/db/fetch-chat/${currentChatIndex}`)
 				let jsonData = await response.json()
 				setResponseItems(jsonData["response"]["conversations"])
 				// console.log(jsonData["response"]["conversations"])
@@ -105,13 +105,13 @@ const HomePage = () => {
 
 			let dateObj = new Date()
 
-			url = "http://localhost:6969/api/get-videos-of-player"
+			url = "http://localhost:6969/api/fetch/get-videos-of-player"
 			query = userQuestion + " only english cricket " + dateObj.toLocaleString('default', { month: 'long' }) + ", " + dateObj.getFullYear()
 			// query = `virat kohli english videos ${dateObj.toLocaleString('default', { month: 'long' }) + ", " + dateObj.getFullYear()}`
 		}
 
 		else {
-			url = "http://localhost:6969/conversation-response"
+			url = "http://localhost:6969/api/fetch/conversation-response"
 			query = userQuestion
 		}
 
@@ -136,7 +136,7 @@ const HomePage = () => {
 		// TODO: Save chats incrementally
 		// DONE
 		
-		response = await fetch(`http://localhost:6969/api/update-chat/${localStorage.getItem("user_id")}/${currentChatIndex}`, {
+		response = await fetch(`http://localhost:6969/api/db/update-chat/${localStorage.getItem("user_id")}/${currentChatIndex}`, {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -174,7 +174,7 @@ const HomePage = () => {
 
 	let createNewChat = async () => {
 
-		let response = await fetch(`http://localhost:6969/api/create-new-chat/${localStorage.getItem("user_id")}`)
+		let response = await fetch(`http://localhost:6969/api/db/create-new-chat/${localStorage.getItem("user_id")}`)
 		let jsonData = await response.json()
 
 		setChatIds(prev => [...prev, {_id: jsonData["response"]["_id"], title: jsonData["response"]["title"]}])
@@ -190,14 +190,14 @@ const HomePage = () => {
 			return
 		}
 		
-		let response = await fetch(`http://localhost:6969/api/delete-chat/${localStorage.getItem("user_id")}/${currentChatIndex}`, {
+		let response = await fetch(`http://localhost:6969/api/db/delete-chat/${localStorage.getItem("user_id")}/${currentChatIndex}`, {
 			method: "DELETE"
 		})
 		let jsonData = await response.json()
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-		response = await fetch(`http://localhost:6969/api/fetch-chat-ids/${localStorage.getItem("user_id")}`)
+		response = await fetch(`http://localhost:6969/api/db/fetch-chat-ids/${localStorage.getItem("user_id")}`)
 		jsonData = await response.json()
 		
 		setChatIds(jsonData["response"])

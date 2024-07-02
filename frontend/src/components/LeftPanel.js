@@ -49,16 +49,16 @@ const LeftPanel = ({ chatIds, currentChatIndex, setCurrentChatIndex, setResponse
 					<button className="navigation-box-button" type="button" onClick={(e) => { createNewChat(); handleSettingChat(currentChatIndex) }}><b>New Chat</b> + </button>
 				</div>}
 
-				<div className="navigation-box">
+				{(isChatPage == true) && <div className="navigation-box">
 					<button className="navigation-box-button" type="button" onClick={deleteChat}><b>Delete Chat</b> - </button>
-				</div>
+				</div>}
 
 				<div className="navigation-box">
 					<button className="navigation-box-button" type="button" onClick={(e) => setResponseItems([])}><b>Temporary clear</b></button>
 				</div>
 
 				<div className="navigation-box">
-					<button className="navigation-box-button" type="button" onClick={() => { localStorage.removeItem("username"); navigate("/") }}><b>{localStorage.getItem("username")}</b> - Logout</button>
+					<button className="navigation-box-button" type="button" onClick={() => { localStorage.removeItem("username"); localStorage.removeItem("user_id"); navigate("/") }}><b>{localStorage.getItem("username")}</b> - Logout</button>
 				</div>
 
 			</div>

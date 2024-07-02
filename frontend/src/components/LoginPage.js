@@ -10,7 +10,7 @@ const LoginPage = () => {
 
 	const sendDataToServer = async () => {
 
-		let response = await fetch("http://localhost:6969/login", {
+		let response = await fetch("http://localhost:6969/api/auth/login", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -25,6 +25,7 @@ const LoginPage = () => {
 
 		if (jsonData.success) {
 			localStorage.setItem("user_id", jsonData["user_id"])
+			localStorage.setItem("username", username)
 			navigate("/chat")
 		}
 		else {
@@ -39,7 +40,7 @@ const LoginPage = () => {
 			return
 		}
 		sendDataToServer()
-		localStorage.setItem("username", username)
+		
 		setUsername("")
 		setPassword("")
 

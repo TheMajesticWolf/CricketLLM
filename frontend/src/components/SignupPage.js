@@ -10,7 +10,7 @@ const SignupPage = () => {
 
 	const sendDataToServer = async () => {
 
-		let response = await fetch("http://localhost:6969/signup", {
+		let response = await fetch("http://localhost:6969/api/auth/signup", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -25,6 +25,7 @@ const SignupPage = () => {
 
 		if (jsonData.success) {
 			localStorage.setItem("username", username)
+			localStorage.setItem("user_id", jsonData["user_id"])
 			navigate("/chat")
 		}
 		else {
