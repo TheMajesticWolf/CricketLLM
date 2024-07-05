@@ -8,6 +8,8 @@ const LoginPage = () => {
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
 
+	localStorage.clear()
+
 	const sendDataToServer = async () => {
 
 		let response = await fetch("http://localhost:6969/api/auth/login", {
@@ -26,6 +28,7 @@ const LoginPage = () => {
 		if (jsonData.success) {
 			localStorage.setItem("user_id", jsonData["user_id"])
 			localStorage.setItem("username", username)
+			localStorage.setItem("accessToken", jsonData["accessToken"])
 			navigate("/chat")
 		}
 		else {

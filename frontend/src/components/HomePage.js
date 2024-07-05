@@ -33,11 +33,30 @@ const HomePage = () => {
 		scrollToBottom();
 	}, [responseItems])
 
+	const isAuthenticated = (jsonData) => {
+
+		if(jsonData["response"]["authenticationFailed"] == true) {
+			return false
+		}
+		return true
+
+	}
+
 	useEffect(() => {
 
 		let fetchDataFromServer = async () => {
-			let response = await fetch(`http://localhost:6969/api/db/fetch-chat-ids/${localStorage.getItem("user_id")}`)
+			let response = await fetch(`http://localhost:6969/api/db/fetch-chat-ids`, {
+				headers: {
+					"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+				}
+			})
+			
 			let jsonData = await response.json()
+
+			if(! isAuthenticated(jsonData)) {
+				navigate("/")
+			}
+
 			
 			// console.log(jsonData["response"])
 			// If a user logs in for the first time, automatically create a "Default" chat
@@ -66,10 +85,20 @@ const HomePage = () => {
 
 				// console.log(newCurrentChatIdx, currentChatIndex)
 
-				let response = await fetch(`http://localhost:6969/api/db/fetch-chat/${currentChatIndex}`)
+				let response = await fetch(`http://localhost:6969/api/db/fetch-chat/${currentChatIndex}`, {
+					headers: {
+						"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+					}
+				})
+				
 				let jsonData = await response.json()
+
+				if(! isAuthenticated(jsonData)) {
+					navigate("/")
+				}
+				// console.log("HERE")
 				setResponseItems(jsonData["response"]["conversations"])
-				// console.log(jsonData["response"]["conversations"])
+				console.log(jsonData["response"]["conversations"])
 
 			}
 		}
@@ -127,7 +156,13 @@ const HomePage = () => {
 			})
 		})
 
+		
 		let jsonData = await response.json()
+
+		if(! isAuthenticated(jsonData)) {
+			navigate("/")
+		}
+
 		
 		
 		
@@ -136,10 +171,11 @@ const HomePage = () => {
 		// TODO: Save chats incrementally
 		// DONE
 		
-		response = await fetch(`http://localhost:6969/api/db/update-chat/${localStorage.getItem("user_id")}/${currentChatIndex}`, {
+		response = await fetch(`http://localhost:6969/api/db/update-chat/${currentChatIndex}`, {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/json"
+				"Content-Type": "application/json",
+				"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
 			},
 			body: JSON.stringify({
 				"newConversationObj": jsonData["response"]
@@ -174,9 +210,19 @@ const HomePage = () => {
 
 	let createNewChat = async () => {
 
-		let response = await fetch(`http://localhost:6969/api/db/create-new-chat/${localStorage.getItem("user_id")}`)
+		let response = await fetch(`http://localhost:6969/api/db/create-new-chat`, {
+			headers: {
+				"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+			}
+		})
+		
 		let jsonData = await response.json()
 
+		if(! isAuthenticated(jsonData)) {
+			navigate("/")
+		}
+
+		
 		setChatIds(prev => [...prev, {_id: jsonData["response"]["_id"], title: jsonData["response"]["title"]}])
 		// console.log([...chatIds, {_id: jsonData["response"]["_id"], title: jsonData["response"]["title"]}])
 		setCurrentChatIndex(jsonData["response"]["_id"])
@@ -190,14 +236,27 @@ const HomePage = () => {
 			return
 		}
 		
-		let response = await fetch(`http://localhost:6969/api/db/delete-chat/${localStorage.getItem("user_id")}/${currentChatIndex}`, {
-			method: "DELETE"
+		let response = await fetch(`http://localhost:6969/api/db/delete-chat/${currentChatIndex}`, {
+			method: "DELETE",
+			headers: {
+				"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+			}
 		})
+		
 		let jsonData = await response.json()
 
+		if(! isAuthenticated(jsonData)) {
+			navigate("/")
+		}
+
+		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-		response = await fetch(`http://localhost:6969/api/db/fetch-chat-ids/${localStorage.getItem("user_id")}`)
+		response = await fetch(`http://localhost:6969/api/db/fetch-chat-ids`, {
+			headers: {
+				"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+			}
+		})
 		jsonData = await response.json()
 		
 		setChatIds(jsonData["response"])

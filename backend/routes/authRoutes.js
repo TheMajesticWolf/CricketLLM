@@ -1,8 +1,14 @@
 const express = require('express')
 const Users = require('../db_schemas/Users')
+const jwt = require('jsonwebtoken')
+const dotenv = require('dotenv')
+const { createAuthToken } = require('../authorization/authorizationUtilities')
+
+dotenv.config()
+
+
 
 const router = express.Router()
-
 
 router.post("/login", async (req, res) => {
 
@@ -16,7 +22,10 @@ router.post("/login", async (req, res) => {
 
 		if (dataFound) {
 
-			res.status(200).json({ success: true, message: "Login successfull", user_id: dataFound["_id"] })
+			// let accessToken = jwt.sign({ user_id: dataFound["_id"] }, process.env.ACCESS_TOKEN_SECRET)
+			let accessToken = createAuthToken({ user_id: dataFound["_id"] })
+
+			res.status(200).json({ success: true, message: "Login successfull", user_id: dataFound["_id"], accessToken: accessToken })
 		}
 		else {
 			res.status(500).json({ success: false, message: "Login failed" })

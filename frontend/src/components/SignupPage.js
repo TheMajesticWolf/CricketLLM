@@ -26,6 +26,8 @@ const SignupPage = () => {
 		if (jsonData.success) {
 			localStorage.setItem("username", username)
 			localStorage.setItem("user_id", jsonData["user_id"])
+			localStorage.setItem("accessToken", jsonData["accessToken"])
+
 			navigate("/chat")
 		}
 		else {
