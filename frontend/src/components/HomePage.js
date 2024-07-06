@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
 import LeftPanel from './LeftPanel';
-import CenterPanel from './CenterPanel';
 import RenderOutput from './RenderOutput';
 import Title from './Title';
 import { json, useNavigate } from 'react-router';
