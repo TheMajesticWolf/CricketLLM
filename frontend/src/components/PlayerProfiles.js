@@ -6,6 +6,7 @@ import './style.css'
 import { useNavigate } from 'react-router'
 
 import Title from './Title'
+import axiosInstance from '../api/myaxios'
 
 const IPLPointsTable = () => {
 	const navigate = useNavigate()
@@ -9062,18 +9063,18 @@ const IPLPointsTable = () => {
 
 
 	const fetchDataFromServer = async (playerName) => {
-		let response = await fetch(`http://localhost:6969/api/fetch/get-player-profile`, {
-			method: "POST",
+		let response = await axiosInstance.post(`/api/fetch/get-player-profile`, {
+		
+			"question": `Player profile of ${playerName}`,
+			"playerName": playerName			
+		}, 
+		{
 			headers: {
 				"Content-Type": "application/json"
 			},
-			body: JSON.stringify({
-				"question": `Player profile of ${playerName}`,
-				"playerName": playerName
-			})
 		})
 
-		let jsonData = await response.json()
+		let jsonData = response.data
 		setResponseItems(responseItems => [...responseItems, jsonData["response"]])
 		setIsInputDisabled(false)
 	}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
+import axiosInstance from '../api/myaxios'
 
 
 const SignupPage = () => {
@@ -10,29 +11,32 @@ const SignupPage = () => {
 
 	const sendDataToServer = async () => {
 
-		let response = await fetch("http://localhost:6969/api/auth/signup", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
+		try {
+			let response = await axiosInstance.post("/api/auth/signup", {
 				"username": username,
-				"password": password,
+				"password": password
+				
+			}, {
+				headers: {
+					"Content-Type": "application/json"
+				}
 			})
-		})
+	
+			let jsonData = response.data
+	
+			if (jsonData.success) {
+				localStorage.setItem("username", username)
+				localStorage.setItem("user_id", jsonData["user_id"])
+				localStorage.setItem("accessToken", jsonData["accessToken"])
+	
+				navigate("/chat")
+			}
 
-		let jsonData = await response.json()
+		} catch (error) {
+			alert(error?.response?.data?.message)
 
-		if (jsonData.success) {
-			localStorage.setItem("username", username)
-			localStorage.setItem("user_id", jsonData["user_id"])
-			localStorage.setItem("accessToken", jsonData["accessToken"])
-
-			navigate("/chat")
 		}
-		else {
-			alert("An error occured")
-		}
+
 	}
 
 	const handleSubmit = (e) => {

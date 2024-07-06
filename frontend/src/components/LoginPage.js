@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import axiosInstance from '../api/myaxios'
 
 const LoginPage = () => {
 
@@ -12,27 +13,32 @@ const LoginPage = () => {
 
 	const sendDataToServer = async () => {
 
-		let response = await fetch("http://localhost:6969/api/auth/login", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
+		try {
+
+			let response = await axiosInstance.post("/api/auth/login", {
 				"username": username,
-				"password": password,
+				"password": password
+				
+			}, {
+				headers: {
+					"Content-Type": "application/json"
+				}
 			})
-		})
+	
+	
+			let jsonData = response.data
+	
+			if (jsonData.success) {
+				localStorage.setItem("user_id", jsonData["user_id"])
+				localStorage.setItem("username", username)
+				localStorage.setItem("accessToken", jsonData["accessToken"])
+				navigate("/chat")
+			}
 
-		let jsonData = await response.json()
-
-		if (jsonData.success) {
-			localStorage.setItem("user_id", jsonData["user_id"])
-			localStorage.setItem("username", username)
-			localStorage.setItem("accessToken", jsonData["accessToken"])
-			navigate("/chat")
-		}
-		else {
-			alert("Invalid credentials")
+			
+		} 
+		catch (error) {
+			alert(error?.response?.data?.message)
 		}
 	}
 

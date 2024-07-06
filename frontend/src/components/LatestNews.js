@@ -5,6 +5,7 @@ import './style.css'
 import { useNavigate } from 'react-router'
 import LeftPanel from './LeftPanel'
 import Title from './Title'
+import axiosInstance from '../api/myaxios'
 
 const LatestNews = () => {
 
@@ -27,7 +28,7 @@ const LatestNews = () => {
 
 	const fetchDataFromServer = async (matchType) => {
 		
-		let response = await fetch("http://localhost:6969/api/fetch/fetch-latest-news")
+		let response = await axiosInstance.get("/api/fetch/fetch-latest-news")
 
 		let jsonData = await response.json()
 		setResponseItems(responseItems => [...responseItems, jsonData["response"]])

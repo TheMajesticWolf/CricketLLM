@@ -4,6 +4,7 @@ import CenterPanel from './CenterPanel';
 import RenderOutput from './RenderOutput';
 import Title from './Title';
 import { json, useNavigate } from 'react-router';
+import axiosInstance from '../api/myaxios'
 
 const HomePage = () => {
 
@@ -20,8 +21,8 @@ const HomePage = () => {
 	}
 
 
-	
-	
+
+
 
 	let [chatIds, setChatIds] = useState([])
 
@@ -35,7 +36,7 @@ const HomePage = () => {
 
 	const isAuthenticated = (jsonData) => {
 
-		if(jsonData["response"]["authenticationFailed"] == true) {
+		if (jsonData["response"]["authenticationFailed"] == true) {
 			return false
 		}
 		return true
@@ -45,22 +46,26 @@ const HomePage = () => {
 	useEffect(() => {
 
 		let fetchDataFromServer = async () => {
-			let response = await fetch(`http://localhost:6969/api/db/fetch-chat-ids`, {
+
+
+			let response = await axiosInstance.get("/api/db/fetch-chat-ids", {
 				headers: {
 					"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
 				}
 			})
-			
-			let jsonData = await response.json()
 
-			if(! isAuthenticated(jsonData)) {
+
+
+			let jsonData = response.data
+
+			if (!isAuthenticated(jsonData)) {
 				navigate("/")
 			}
 
-			
+
 			// console.log(jsonData["response"])
 			// If a user logs in for the first time, automatically create a "Default" chat
-			if(jsonData["response"].length == 0) {
+			if (jsonData["response"].length == 0) {
 				await createNewChat();
 				return
 			}
@@ -72,11 +77,11 @@ const HomePage = () => {
 		fetchDataFromServer()
 
 	}, [])
-	
+
 	useEffect(() => {
 
 		let fetchDataFromServer = async () => {
-			if(chatIds[0]) {
+			if (chatIds[0]) {
 				// console.log(chatIds)
 
 				// let newCurrentChatIdx = chatIds[chatIds.length - 1]["_id"]
@@ -85,15 +90,15 @@ const HomePage = () => {
 
 				// console.log(newCurrentChatIdx, currentChatIndex)
 
-				let response = await fetch(`http://localhost:6969/api/db/fetch-chat/${currentChatIndex}`, {
+				let response = await axiosInstance.get(`/api/db/fetch-chat/${currentChatIndex}`, {
 					headers: {
 						"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
 					}
 				})
-				
-				let jsonData = await response.json()
 
-				if(! isAuthenticated(jsonData)) {
+				let jsonData = await response.data
+
+				if (!isAuthenticated(jsonData)) {
 					navigate("/")
 				}
 				// console.log("HERE")
@@ -104,7 +109,7 @@ const HomePage = () => {
 		}
 
 		fetchDataFromServer()
-		
+
 	}, [chatIds, currentChatIndex])
 
 
@@ -146,44 +151,41 @@ const HomePage = () => {
 
 
 
-		let response = await fetch(url, {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				"question": query
+		let response = await axiosInstance.post(url, {
+			"question": query
+		},
+			{
+				headers: {
+					"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+				}
 			})
-		})
 
-		
-		let jsonData = await response.json()
 
-		if(! isAuthenticated(jsonData)) {
+		let jsonData = await response.data
+
+		if (!isAuthenticated(jsonData)) {
 			navigate("/")
 		}
 
-		
-		
-		
+
+
+
 		setResponseItems([...responseItems, jsonData["response"]])
-		
+
 		// TODO: Save chats incrementally
 		// DONE
-		
-		response = await fetch(`http://localhost:6969/api/db/update-chat/${currentChatIndex}`, {
-			method: "POST",
+
+		response = await axiosInstance.post(`/api/db/update-chat/${currentChatIndex}`, {
+			"newConversationObj": jsonData["response"]
+		}, 
+		{
 			headers: {
 				"Content-Type": "application/json",
 				"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-			},
-			body: JSON.stringify({
-				"newConversationObj": jsonData["response"]
-			})
+			}
 		})
 
-		jsonData = await response.json()
-
+		jsonData = response.data
 
 
 
@@ -210,62 +212,61 @@ const HomePage = () => {
 
 	let createNewChat = async () => {
 
-		let response = await fetch(`http://localhost:6969/api/db/create-new-chat`, {
+		let response = await axiosInstance.get(`/api/db/create-new-chat`, {
 			headers: {
 				"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
 			}
 		})
-		
-		let jsonData = await response.json()
 
-		if(! isAuthenticated(jsonData)) {
+		let jsonData = await response.data
+
+		if (!isAuthenticated(jsonData)) {
 			navigate("/")
 		}
 
-		
-		setChatIds(prev => [...prev, {_id: jsonData["response"]["_id"], title: jsonData["response"]["title"]}])
+
+		setChatIds(prev => [...prev, { _id: jsonData["response"]["_id"], title: jsonData["response"]["title"] }])
 		// console.log([...chatIds, {_id: jsonData["response"]["_id"], title: jsonData["response"]["title"]}])
 		setCurrentChatIndex(jsonData["response"]["_id"])
-		
+
 	}
-	
+
 	let deleteChat = async () => {
 
-		if(chatIds.length == 1) {
+		if (chatIds.length == 1) {
 			alert("You need to have atleast one chat")
 			return
 		}
-		
-		let response = await fetch(`http://localhost:6969/api/db/delete-chat/${currentChatIndex}`, {
-			method: "DELETE",
+
+		let response = await axiosInstance.delete(`/api/db/delete-chat/${currentChatIndex}`, {
 			headers: {
 				"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
 			}
 		})
-		
-		let jsonData = await response.json()
 
-		if(! isAuthenticated(jsonData)) {
+		let jsonData = await response.data
+
+		if (!isAuthenticated(jsonData)) {
 			navigate("/")
 		}
 
-		
+
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		
-		response = await fetch(`http://localhost:6969/api/db/fetch-chat-ids`, {
+
+		response = await axiosInstance.get(`/api/db/fetch-chat-ids`, {
 			headers: {
 				"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
 			}
 		})
-		jsonData = await response.json()
-		
+		jsonData = response.data
+
 		setChatIds(jsonData["response"])
 		setCurrentChatIndex(jsonData["response"][jsonData["response"].length - 1]["_id"])
-		
 
 
-	
-		
+
+
+
 	}
 
 

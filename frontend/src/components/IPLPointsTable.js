@@ -5,6 +5,7 @@ import './style.css'
 import { useNavigate } from 'react-router'
 import LeftPanel from './LeftPanel'
 import Title from './Title'
+import axiosInstance from '../api/myaxios'
 
 
 const IPLPointsTable = () => {
@@ -23,18 +24,19 @@ const IPLPointsTable = () => {
 	}, [responseItems])
 
 	const fetchDataFromServer = async (matchType) => {
-		let response = await fetch(`http://localhost:6969/api/fetch/fetch-points-table`, {
-			method: "POST",
+		let response = await axiosInstance.post(`/api/fetch/fetch-points-table`, {
+
+			"question": `Points table for ${matchType}`,
+			"matchType": matchType
+
+		}, 
+		{
 			headers: {
 				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				"question": `Points table for ${matchType}`,
-				"matchType": matchType
-			})
+			}
 		})
 
-		let jsonData = await response.json()
+		let jsonData = response.data
 		setResponseItems(responseItems => [...responseItems, jsonData["response"]])
 		setIsInputDisabled(false)
 	}
