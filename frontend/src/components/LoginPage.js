@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import axiosInstance from '../api/myaxios'
+import axiosInstance, {axiosLoginInstance} from '../api/myaxios'
 
 const LoginPage = () => {
 
@@ -9,13 +9,12 @@ const LoginPage = () => {
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
 
-	localStorage.clear()
 
 	const sendDataToServer = async () => {
 
 		try {
 
-			let response = await axiosInstance.post("/api/auth/login", {
+			let response = await axiosLoginInstance.post("/api/auth/login", {
 				"username": username,
 				"password": password
 				

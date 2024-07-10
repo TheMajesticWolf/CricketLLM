@@ -6,10 +6,12 @@ import { useNavigate } from 'react-router'
 import LeftPanel from './LeftPanel'
 import Title from './Title'
 import axiosInstance from '../api/myaxios'
+import useLogout from '../hooks/useLogout'
 
 
 const IPLPointsTable = () => {
 	const navigate = useNavigate()
+	const logout = useLogout()
 	const [selectedOption, setSelectedOption] = useState("null")
 	const [responseItems, setResponseItems] = useState([])
 	const [isInputDisabled, setIsInputDisabled] = useState(false)
@@ -22,6 +24,15 @@ const IPLPointsTable = () => {
 	useEffect(() => {
 		scrollToBottom()
 	}, [responseItems])
+
+
+	const isAuthenticated = (jsonData) => {
+
+		if (jsonData?.response?.authenticationFailed == true) {
+			logout()
+		}
+
+	}
 
 	const fetchDataFromServer = async (matchType) => {
 		let response = await axiosInstance.post(`/api/fetch/fetch-points-table`, {
@@ -37,6 +48,7 @@ const IPLPointsTable = () => {
 		})
 
 		let jsonData = response.data
+		isAuthenticated(jsonData)
 		setResponseItems(responseItems => [...responseItems, jsonData["response"]])
 		setIsInputDisabled(false)
 	}

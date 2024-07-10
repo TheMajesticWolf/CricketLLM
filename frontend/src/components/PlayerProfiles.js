@@ -7,9 +7,11 @@ import { useNavigate } from 'react-router'
 
 import Title from './Title'
 import axiosInstance from '../api/myaxios'
+import useLogout from '../hooks/useLogout'
 
 const IPLPointsTable = () => {
 	const navigate = useNavigate()
+	const logout = useLogout()
 	const [selectedOption, setSelectedOption] = useState("null")
 	const [responseItems, setResponseItems] = useState([])
 	const [isInputDisabled, setIsInputDisabled] = useState(false)
@@ -9060,6 +9062,15 @@ const IPLPointsTable = () => {
 
 	names.sort()
 
+	
+	const isAuthenticated = (jsonData) => {
+
+		if (jsonData?.response?.authenticationFailed == true) {
+			logout()
+		}
+
+	}
+
 
 
 	const fetchDataFromServer = async (playerName) => {
@@ -9075,6 +9086,7 @@ const IPLPointsTable = () => {
 		})
 
 		let jsonData = response.data
+		isAuthenticated(jsonData)
 		setResponseItems(responseItems => [...responseItems, jsonData["response"]])
 		setIsInputDisabled(false)
 	}

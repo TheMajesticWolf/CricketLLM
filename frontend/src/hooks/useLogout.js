@@ -14,7 +14,8 @@ const useLogout = () => {
 		let jsonData = response.data
 
 		if(jsonData.success) {
-			navigate("/")
+			localStorage.clear()
+			navigate("/", {replace: true})
 			alert("Logged out successfully")
 		}
 

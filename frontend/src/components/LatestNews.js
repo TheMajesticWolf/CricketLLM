@@ -6,11 +6,13 @@ import { useNavigate } from 'react-router'
 import LeftPanel from './LeftPanel'
 import Title from './Title'
 import axiosInstance from '../api/myaxios'
+import useLogout from '../hooks/useLogout'
 
 const LatestNews = () => {
 
 
 	const navigate = useNavigate()
+	const logout = useLogout()
 	const [selectedOption, setSelectedOption] = useState("null")
 	const [responseItems, setResponseItems] = useState([])
 	const [isInputDisabled, setIsInputDisabled] = useState(false)
@@ -24,13 +26,23 @@ const LatestNews = () => {
 		scrollToBottom()
 	}, [responseItems])
 
+	
+	const isAuthenticated = (jsonData) => {
+
+		if (jsonData?.response?.authenticationFailed == true) {
+			logout()
+		}
+
+	}
+
 
 
 	const fetchDataFromServer = async (matchType) => {
 		
 		let response = await axiosInstance.get("/api/fetch/fetch-latest-news")
 
-		let jsonData = await response.json()
+		let jsonData = response.data
+		isAuthenticated(jsonData)
 		setResponseItems(responseItems => [...responseItems, jsonData["response"]])
 		console.log(jsonData)
 		setIsInputDisabled(false)

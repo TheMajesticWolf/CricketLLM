@@ -4,6 +4,7 @@ import RenderOutput from './RenderOutput';
 import Title from './Title';
 import { json, useNavigate } from 'react-router';
 import axiosInstance from '../api/myaxios'
+import useLogout from '../hooks/useLogout';
 
 const HomePage = () => {
 
@@ -13,6 +14,7 @@ const HomePage = () => {
 	const [singleResponseItem, setSingleResponseItem] = useState("")
 
 	const navigate = useNavigate()
+	const logout = useLogout()
 
 	const dummy = useRef(null)
 	const scrollToBottom = () => {
@@ -35,12 +37,12 @@ const HomePage = () => {
 
 	const isAuthenticated = (jsonData) => {
 
-		if (jsonData["response"]["authenticationFailed"] == true) {
-			return false
+		if (jsonData?.response?.authenticationFailed == true) {
+			logout()
 		}
-		return true
 
 	}
+
 
 	useEffect(() => {
 
@@ -55,11 +57,10 @@ const HomePage = () => {
 
 
 
-			let jsonData = response.data
-
-			if (!isAuthenticated(jsonData)) {
-				navigate("/")
-			}
+			let jsonData = response?.data
+			console.log(jsonData)
+			isAuthenticated(jsonData)
+			
 
 
 			// console.log(jsonData["response"])
@@ -95,11 +96,9 @@ const HomePage = () => {
 					// }
 				})
 
-				let jsonData = await response.data
+				let jsonData = response.data
 
-				if (!isAuthenticated(jsonData)) {
-					navigate("/")
-				}
+				isAuthenticated(jsonData)
 				// console.log("HERE")
 				setResponseItems(jsonData["response"]["conversations"])
 				console.log(jsonData["response"]["conversations"])
@@ -160,11 +159,9 @@ const HomePage = () => {
 			})
 
 
-		let jsonData = await response.data
+		let jsonData = response.data
 
-		if (!isAuthenticated(jsonData)) {
-			navigate("/")
-		}
+		isAuthenticated(jsonData)
 
 
 
@@ -219,9 +216,7 @@ const HomePage = () => {
 
 		let jsonData = response.data
 
-		if (!isAuthenticated(jsonData)) {
-			navigate("/")
-		}
+		isAuthenticated(jsonData)
 
 
 		setChatIds(prev => [...prev, { _id: jsonData["response"]["_id"], title: jsonData["response"]["title"] }])
@@ -245,9 +240,7 @@ const HomePage = () => {
 
 		let jsonData = await response.data
 
-		if (!isAuthenticated(jsonData)) {
-			navigate("/")
-		}
+		isAuthenticated(jsonData)
 
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
