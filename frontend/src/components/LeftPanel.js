@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
+import useLogout from '../hooks/useLogout'
 
 
 const LeftPanel = ({ chatIds, currentChatIndex, setCurrentChatIndex, setResponseItems, deleteChat, createNewChat, isChatPage }) => {
 
 	const navigate = useNavigate()
+	const logout = useLogout()
 
 	// useEffect(() => {
 	// handleSettingChat(3);
@@ -58,7 +60,7 @@ const LeftPanel = ({ chatIds, currentChatIndex, setCurrentChatIndex, setResponse
 				</div>
 
 				<div className="navigation-box">
-					<button className="navigation-box-button" type="button" onClick={() => { localStorage.removeItem("username"); localStorage.removeItem("user_id"); navigate("/") }}><b>{localStorage.getItem("username")}</b> - Logout</button>
+					<button className="navigation-box-button" type="button" onClick={() => { localStorage.removeItem("username"); logout() }}><b>{localStorage.getItem("username")}</b> - Logout</button>
 				</div>
 
 			</div>

@@ -6,6 +6,7 @@ const dotenv = require('dotenv')
 const Users = require('./db_schemas/Users')
 const Chats = require('./db_schemas/Chats')
 const { v4: uuidv4 } = require('uuid');
+const cookieParser = require('cookie-parser')
 
 const chatRoutes = require("./routes/chatRoutes")
 const authRoutes = require("./routes/authRoutes")
@@ -36,6 +37,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 app.use(express.json())
 app.use(cors())
+app.use(cookieParser())
 
 app.use("/api/db", chatRoutes)
 app.use("/api/auth", authRoutes)

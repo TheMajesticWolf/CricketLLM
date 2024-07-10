@@ -1,8 +1,12 @@
 const express = require('express')
 const { spawn } = require('child_process')
+const {createAuthToken, authenticateToken} = require('../authorization/authorizationUtilities')
+
 
 
 const router = express.Router()
+
+router.use(authenticateToken)
 
 const executeScript = (script, userObj) => {
 	return new Promise((resolve, reject) => {

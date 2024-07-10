@@ -48,9 +48,9 @@ const HomePage = () => {
 
 
 			let response = await axiosInstance.get("/api/db/fetch-chat-ids", {
-				headers: {
-					"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-				}
+				// headers: {
+				// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+				// }
 			})
 
 
@@ -90,9 +90,9 @@ const HomePage = () => {
 				// console.log(newCurrentChatIdx, currentChatIndex)
 
 				let response = await axiosInstance.get(`/api/db/fetch-chat/${currentChatIndex}`, {
-					headers: {
-						"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-					}
+					// headers: {
+					// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+					// }
 				})
 
 				let jsonData = await response.data
@@ -154,9 +154,9 @@ const HomePage = () => {
 			"question": query
 		},
 			{
-				headers: {
-					"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-				}
+				// headers: {
+				// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+				// }
 			})
 
 
@@ -178,13 +178,13 @@ const HomePage = () => {
 			"newConversationObj": jsonData["response"]
 		}, 
 		{
-			headers: {
-				"Content-Type": "application/json",
-				"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-			}
+			// headers: {
+			// 	"Content-Type": "application/json",
+			// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+			// }
 		})
 
-		jsonData = response.data
+		// jsonData = response.data
 
 
 
@@ -212,12 +212,12 @@ const HomePage = () => {
 	let createNewChat = async () => {
 
 		let response = await axiosInstance.get(`/api/db/create-new-chat`, {
-			headers: {
-				"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-			}
+			// headers: {
+			// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+			// }
 		})
 
-		let jsonData = await response.data
+		let jsonData = response.data
 
 		if (!isAuthenticated(jsonData)) {
 			navigate("/")
@@ -238,9 +238,9 @@ const HomePage = () => {
 		}
 
 		let response = await axiosInstance.delete(`/api/db/delete-chat/${currentChatIndex}`, {
-			headers: {
-				"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-			}
+			// headers: {
+			// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+			// }
 		})
 
 		let jsonData = await response.data
@@ -253,9 +253,9 @@ const HomePage = () => {
 		//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		response = await axiosInstance.get(`/api/db/fetch-chat-ids`, {
-			headers: {
-				"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-			}
+			// headers: {
+			// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+			// }
 		})
 		jsonData = response.data
 

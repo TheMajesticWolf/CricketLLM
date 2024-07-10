@@ -29,9 +29,7 @@ const LoginPage = () => {
 			let jsonData = response.data
 	
 			if (jsonData.success) {
-				localStorage.setItem("user_id", jsonData["user_id"])
 				localStorage.setItem("username", username)
-				localStorage.setItem("accessToken", jsonData["accessToken"])
 				navigate("/chat")
 			}
 
