@@ -26,7 +26,7 @@ const LatestNews = () => {
 		scrollToBottom()
 	}, [responseItems])
 
-	
+
 	const isAuthenticated = (jsonData) => {
 
 		if (jsonData?.response?.authenticationFailed == true) {
@@ -38,7 +38,7 @@ const LatestNews = () => {
 
 
 	const fetchDataFromServer = async (matchType) => {
-		
+
 		let response = await axiosInstance.get("/api/fetch/fetch-latest-news")
 
 		let jsonData = response.data
@@ -61,10 +61,10 @@ const LatestNews = () => {
 		<div className="overall-container">
 
 
-			<LeftPanel setResponseItems={setResponseItems}/>
+			<LeftPanel setResponseItems={setResponseItems} />
 
 			<div className="center-panel-container">
-				<Title subtitle={"Latest news"}/>
+				<Title subtitle={"Latest news"} />
 				<div className="response-box" style={{ height: "75%" }}>
 					<RenderOutput frontendList={responseItems} />
 					<div ref={dummy} className="loading-box" style={{ display: (isInputDisabled == true ? "block" : "none") }}>
@@ -76,8 +76,10 @@ const LatestNews = () => {
 
 				<div className="input-box">
 					<form onSubmit={handleSubmit}>
-						<button type="submit" style={{width: "90%"}}>Refresh</button>
+						<div className="input-box-row">
+							<button type="submit" style={{ width: "90%", flex: 0.9}}>Refresh</button>
 
+						</div>
 					</form>
 				</div>
 

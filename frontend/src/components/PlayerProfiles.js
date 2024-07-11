@@ -9062,7 +9062,7 @@ const IPLPointsTable = () => {
 
 	names.sort()
 
-	
+
 	const isAuthenticated = (jsonData) => {
 
 		if (jsonData?.response?.authenticationFailed == true) {
@@ -9075,15 +9075,15 @@ const IPLPointsTable = () => {
 
 	const fetchDataFromServer = async (playerName) => {
 		let response = await axiosInstance.post(`/api/fetch/get-player-profile`, {
-		
+
 			"question": `Player profile of ${playerName}`,
-			"playerName": playerName			
-		}, 
-		{
-			headers: {
-				"Content-Type": "application/json"
-			},
-		})
+			"playerName": playerName
+		},
+			{
+				headers: {
+					"Content-Type": "application/json"
+				},
+			})
 
 		let jsonData = response.data
 		isAuthenticated(jsonData)
@@ -9107,12 +9107,12 @@ const IPLPointsTable = () => {
 	return (
 		<div className="overall-container">
 
-			<LeftPanel setResponseItems={setResponseItems}/>
+			<LeftPanel setResponseItems={setResponseItems} />
 
 
 			<div className="center-panel-container">
 
-				<Title subtitle={'Player profile and statistics'}/>
+				<Title subtitle={'Player profile and statistics'} />
 
 				<div className="response-box">
 					<RenderOutput frontendList={responseItems} />
@@ -9123,14 +9123,17 @@ const IPLPointsTable = () => {
 				</div>
 				<div className="input-box">
 					<form>
-						<select value={selectedOption} onChange={handleSubmit}>
-							<option value="null">Select player</option>
-							{
-								names.map((name, idx) => (
-									<option value={name}>{name.at(0).toUpperCase() + name.slice(1)}</option>
-								))
-							}
-						</select>
+						<div className="input-box-row">
+
+							<select value={selectedOption} onChange={handleSubmit}>
+								<option value="null">Select player</option>
+								{
+									names.map((name, idx) => (
+										<option value={name}>{name.at(0).toUpperCase() + name.slice(1)}</option>
+									))
+								}
+							</select>
+						</div>
 					</form>
 				</div>
 			</div>

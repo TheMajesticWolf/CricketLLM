@@ -84,7 +84,15 @@ button {
 	margin-top: 10px; */
 	width: 100%;
 	height: 10%;
-  }
+}
+
+.input-box-row {
+	display: flex;
+	/* align-items: center; */
+	justify-content: space-evenly;
+	flex-direction: row;
+	
+}
 
 .input-box form {
 	width: 100%;
@@ -94,13 +102,15 @@ button {
 .input-box input,
 .input-box textarea,
 .input-box select {
-
+	
+	flex: 1;
 	font-size: 1.75rem;
-	width: 90%;
+	max-width: 90%;
 	/* margin: 0px auto 0px auto; */
-
+	margin: 0px 10px 0px 10px;
+	
 	color: antiquewhite;
-
+	
 	background: none;
 	outline: transparent;
 	border: none;
@@ -109,6 +119,9 @@ button {
 
 
 .input-box button {
+	flex: 0.1;
+	border-radius: 0px;
+	margin: 0 10px 0 10px;
 	font-size: 1.75rem;
 	font-weight: bolder;
 	background: none;

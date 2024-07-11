@@ -60,7 +60,7 @@ const HomePage = () => {
 			let jsonData = response?.data
 			console.log(jsonData)
 			isAuthenticated(jsonData)
-			
+
 
 
 			// console.log(jsonData["response"])
@@ -173,13 +173,13 @@ const HomePage = () => {
 
 		response = await axiosInstance.post(`/api/db/update-chat/${currentChatIndex}`, {
 			"newConversationObj": jsonData["response"]
-		}, 
-		{
-			// headers: {
-			// 	"Content-Type": "application/json",
-			// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
-			// }
-		})
+		},
+			{
+				// headers: {
+				// 	"Content-Type": "application/json",
+				// 	"Authorization": `Bearer ${localStorage.getItem("accessToken")}`
+				// }
+			})
 
 		// jsonData = response.data
 
@@ -251,6 +251,7 @@ const HomePage = () => {
 			// }
 		})
 		jsonData = response.data
+		isAuthenticated(jsonData)
 
 		setChatIds(jsonData["response"])
 		setCurrentChatIndex(jsonData["response"][jsonData["response"].length - 1]["_id"])
@@ -307,12 +308,12 @@ const HomePage = () => {
 					} */}
 					<form onSubmit={handleSubmit}>
 
-						<input type="text" placeholder="Enter your question" disabled={isInputDisabled} value={userQuestion} onChange={(e) => setUserQuestion(e.target.value)} />
-						{/* <input type="text" placeholder="Enter your question" disabled={isInputDisabled} value={userQuestion} onChange={handleInputChange} /> */}
-						{/* <textarea type="text" style={{resize: "vertical"}} rows={5} placeholder="Enter your question" disabled={isInputDisabled} value={userQuestion} onChange={(e) => setUserQuestion(e.target.value)} /> */}
+						<div className="input-box-row">
+							<input type="text" placeholder="Enter your question" disabled={isInputDisabled} value={userQuestion} onChange={(e) => setUserQuestion(e.target.value)} />
+							{/* <button onClick={handleSubmit}>↑</button> */}
+						</div>
 
 
-						<button onClick={handleSubmit}>↑</button>
 					</form>
 				</div>
 

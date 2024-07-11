@@ -40,12 +40,12 @@ const IPLPointsTable = () => {
 			"question": `Points table for ${matchType}`,
 			"matchType": matchType
 
-		}, 
-		{
-			headers: {
-				"Content-Type": "application/json"
-			}
-		})
+		},
+			{
+				headers: {
+					"Content-Type": "application/json"
+				}
+			})
 
 		let jsonData = response.data
 		isAuthenticated(jsonData)
@@ -89,27 +89,29 @@ const IPLPointsTable = () => {
 				</div>
 				<div className="input-box">
 					<form>
-						<select value={selectedOption} onChange={handleSubmit}>
-							<option value="null">Select match</option>
-							<option value="T20 World Cup 2024">T20 World Cup 2024</option>
-							<option value="IPL 2024">IPL 2024</option>
-							<option value="IPL 2023">IPL 2023</option>
-							<option value="IPL 2022">IPL 2022</option>
-							<option value="IPL 2021">IPL 2021</option>
-							<option value="IPL 2020">IPL 2020</option>
-							<option value="IPL 2019">IPL 2019</option>
-							<option value="IPL 2018">IPL 2018</option>
-							<option value="IPL 2017">IPL 2017</option>
-							<option value="IPL 2016">IPL 2016</option>
-							<option value="IPL 2015">IPL 2015</option>
-							<option value="IPL 2014">IPL 2014</option>
-							<option value="IPL 2013">IPL 2013</option>
-							<option value="IPL 2012">IPL 2012</option>
-							<option value="IPL 2011">IPL 2011</option>
-							<option value="IPL 2010">IPL 2010</option>
-							<option value="IPL 2009">IPL 2009</option>
-							<option value="IPL 2008">IPL 2008</option>
-						</select>
+						<div className="input-box-row">
+							<select value={selectedOption} onChange={handleSubmit}>
+								<option value="null">Select match</option>
+								<option value="T20 World Cup 2024">T20 World Cup 2024</option>
+								<option value="IPL 2024">IPL 2024</option>
+								<option value="IPL 2023">IPL 2023</option>
+								<option value="IPL 2022">IPL 2022</option>
+								<option value="IPL 2021">IPL 2021</option>
+								<option value="IPL 2020">IPL 2020</option>
+								<option value="IPL 2019">IPL 2019</option>
+								<option value="IPL 2018">IPL 2018</option>
+								<option value="IPL 2017">IPL 2017</option>
+								<option value="IPL 2016">IPL 2016</option>
+								<option value="IPL 2015">IPL 2015</option>
+								<option value="IPL 2014">IPL 2014</option>
+								<option value="IPL 2013">IPL 2013</option>
+								<option value="IPL 2012">IPL 2012</option>
+								<option value="IPL 2011">IPL 2011</option>
+								<option value="IPL 2010">IPL 2010</option>
+								<option value="IPL 2009">IPL 2009</option>
+								<option value="IPL 2008">IPL 2008</option>
+							</select>
+						</div>
 					</form>
 				</div>
 			</div>
