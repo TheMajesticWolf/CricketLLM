@@ -60,7 +60,7 @@ const LeftPanel = ({ chatIds, currentChatIndex, setCurrentChatIndex, setResponse
 				</div>
 
 				<div className="navigation-box">
-					<button className="navigation-box-button" type="button" onClick={() => { localStorage.removeItem("username"); logout() }}><b>{localStorage.getItem("username")}</b> - Logout</button>
+					<button className="navigation-box-button" type="button" onClick={(e) => { localStorage.clear(); logout() }}><b>{localStorage.getItem("username")}</b> - Logout</button>
 				</div>
 
 			</div>

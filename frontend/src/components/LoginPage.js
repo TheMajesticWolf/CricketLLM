@@ -1,6 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState,  useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import axiosInstance, {axiosLoginInstance} from '../api/myaxios'
+import { AuthContext } from '../context/AuthProvider';
+
+
 
 const LoginPage = () => {
 
@@ -8,6 +11,8 @@ const LoginPage = () => {
 
 	const [username, setUsername] = useState("")
 	const [password, setPassword] = useState("")
+
+	const {authContext, setAuthContext} = useContext(AuthContext)
 
 
 	const sendDataToServer = async () => {
@@ -28,6 +33,10 @@ const LoginPage = () => {
 			let jsonData = response.data
 	
 			if (jsonData.success) {
+				setAuthContext({
+					isloggedin: true,
+				})
+                localStorage.setItem("isloggedin", JSON.stringify(true));
 				localStorage.setItem("username", username)
 				navigate("/chat")
 			}

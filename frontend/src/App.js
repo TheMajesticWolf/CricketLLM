@@ -7,6 +7,7 @@ import IPLPointsTable from './components/IPLPointsTable';
 import PlayerProfiles from './components/PlayerProfiles';
 import './components/style.css'
 import LatestNews from './components/LatestNews';
+import PrivateRoutes from './components/PrivateRoutes';
 
 function App() {
 	return (
@@ -20,11 +21,14 @@ function App() {
 			<Routes>
 
 				<Route path="/" element={<LoginPage />}/>
-				<Route path="/chat" element={<HomePage />}/>
 				<Route path="/signup" element={<SignupPage />}/>
-				<Route path="/points-table" element={<IPLPointsTable />}/>
-				<Route path="/player-profiles" element={<PlayerProfiles />}/>
-				<Route path="/latest-news" element={<LatestNews />}/>
+				<Route element={<PrivateRoutes />}>
+					<Route path="/chat" element={<HomePage />}/>
+					<Route path="/points-table" element={<IPLPointsTable />}/>
+					<Route path="/player-profiles" element={<PlayerProfiles />}/>
+					<Route path="/latest-news" element={<LatestNews />}/>
+
+				</Route>
 
 			</Routes>
 

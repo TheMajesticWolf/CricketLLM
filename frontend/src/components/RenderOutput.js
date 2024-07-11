@@ -9,7 +9,7 @@ const RenderOutput = ({ frontendList }) => {
 		<>
 
 			{
-				frontendList.map((object, idx) => (
+				frontendList && frontendList.map((object, idx) => (
 
 					<div className="response-item" key={idx}>
 

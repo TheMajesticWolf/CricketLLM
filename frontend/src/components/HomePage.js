@@ -100,8 +100,8 @@ const HomePage = () => {
 
 				isAuthenticated(jsonData)
 				// console.log("HERE")
-				setResponseItems(jsonData["response"]["conversations"])
-				console.log(jsonData["response"]["conversations"])
+				setResponseItems(jsonData?.response?.conversations)
+				console.log(jsonData?.response?.conversations)
 
 			}
 		}
