@@ -35,6 +35,10 @@ const LeftPanel = ({ chatIds, currentChatIndex, setCurrentChatIndex, setResponse
 				</div>
 
 				<div className="navigation-box">
+					<button className="navigation-box-button" type="button" onClick={() => navigate("/chat-room")}>Chat room</button>
+				</div>
+				
+				<div className="navigation-box">
 					<button className="navigation-box-button" type="button" onClick={() => navigate("/points-table")}>Points table </button>
 				</div>
 
@@ -46,6 +50,7 @@ const LeftPanel = ({ chatIds, currentChatIndex, setCurrentChatIndex, setResponse
 					<button className="navigation-box-button" type="button" onClick={() => navigate("/player-profiles")}>Player profiles</button>
 
 				</div>
+
 
 				{(isChatPage == true) && <div className="navigation-box">
 					<button className="navigation-box-button" type="button" onClick={(e) => { createNewChat(); handleSettingChat(currentChatIndex) }}><b>New Chat</b> + </button>

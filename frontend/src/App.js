@@ -8,6 +8,7 @@ import PlayerProfiles from './components/PlayerProfiles';
 import './components/style.css'
 import LatestNews from './components/LatestNews';
 import PrivateRoutes from './components/PrivateRoutes';
+import ChatRoom from './components/ChatRoom';
 
 function App() {
 	return (
@@ -27,6 +28,7 @@ function App() {
 					<Route path="/points-table" element={<IPLPointsTable />}/>
 					<Route path="/player-profiles" element={<PlayerProfiles />}/>
 					<Route path="/latest-news" element={<LatestNews />}/>
+					<Route path="/chat-room" element={<ChatRoom />}/>
 
 				</Route>
 

@@ -191,7 +191,18 @@ const RenderOutput = ({ frontendList }) => {
 							</div>
 						</>}
 
+						{(object["return_format"] == "chatRoomItem") && <>
 
+
+							<div className="response-output" style={{color: object["from"] == "Me" ? "lime" : "orangered", textAlign: object["from"] == "Me" ? "right" : "left"}}>
+								<p><b><u>{object["from"]}</u></b></p>
+								<p style={{fontSize: "15px"}}>{new Date().toLocaleTimeString()}</p>
+								<p>{object["output"]}</p>
+							</div>
+							
+
+						</>
+						}
 
 
 					</div>
