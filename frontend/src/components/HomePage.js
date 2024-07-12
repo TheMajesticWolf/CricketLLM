@@ -70,8 +70,8 @@ const HomePage = () => {
 				return
 			}
 
-			setChatIds(jsonData["response"])
-			setCurrentChatIndex(jsonData["response"][jsonData["response"].length - 1]["_id"])
+			setChatIds(jsonData?.response)
+			setCurrentChatIndex(jsonData?.response[jsonData?.response.length - 1]?._id)
 		}
 
 		fetchDataFromServer()

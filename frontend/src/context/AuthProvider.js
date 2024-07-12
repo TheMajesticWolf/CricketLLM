@@ -1,4 +1,6 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect, useLayoutEffect } from 'react'
+import axiosInstance from '../api/myaxios'
+
 
 export const AuthContext = createContext({})
 
@@ -11,6 +13,26 @@ const AuthProvider = ({ children }) => {
 	useEffect(() => {
         localStorage.setItem('isloggedin', JSON.stringify(authContext.isloggedin));
     }, [authContext]);
+
+	
+	useLayoutEffect(() => {
+
+
+		let fetchDataFromServer = async () => {
+			let response = await axiosInstance.post("/api/auth/check-auth", {}, {})
+			let jsonData = response.data
+
+			if(jsonData["success"] == false && jsonData?.response?.authenticationFailed == true) {
+				// isAuthValid = false;
+				setAuthContext({isloggedin: false})
+				// window.location.href = "/"
+			}
+			
+			
+		}
+		
+		fetchDataFromServer();
+	}, [])
 
 
 	return (

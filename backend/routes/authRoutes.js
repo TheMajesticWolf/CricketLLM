@@ -157,4 +157,16 @@ router.post("/refresh", async (req, res) => {
 	res.status(401).send({ success: false, response: { authenticationFailed: true, message: "Unauthorised. Already logged out" } })
 })
 
+router.post("/check-auth", (req, res) => {
+	let refreshToken = req.cookies?.refreshToken
+	
+	if(! refreshToken) {
+		res.status(401).send({ success: false, response: { authenticationFailed: true, message: "Unauthorised attempt to access website" } })
+		return
+	}
+	res.status(200).send({ success: true})
+})
+
+
+
 module.exports = router
