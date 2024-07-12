@@ -253,8 +253,8 @@ const HomePage = () => {
 		jsonData = response.data
 		isAuthenticated(jsonData)
 
-		setChatIds(jsonData["response"])
-		setCurrentChatIndex(jsonData["response"][jsonData["response"].length - 1]["_id"])
+		setChatIds(jsonData?.response)
+		setCurrentChatIndex(jsonData?.response[jsonData?.response?.length - 1]?._id)
 
 
 
