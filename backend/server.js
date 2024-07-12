@@ -80,7 +80,7 @@ io.on("connection", (socket) => {
 	
 	socket.on("disconnect", () => {
 		console.log(`User disconnected: ${socket.id}`)
-		io.emit("from-server", {message: `${username} left the chat`, from: "Server"})
+		io.emit("from-server", {message: `${socket.id} left the chat`, from: "Server"})
 	})
 })
 
