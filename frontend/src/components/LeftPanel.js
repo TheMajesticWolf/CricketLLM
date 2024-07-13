@@ -78,7 +78,7 @@ const LeftPanel = ({ chatIds, currentChatIndex, setCurrentChatIndex, setResponse
 
 
 
-				{chatIds.map((obj, idx) => (
+				{Array.isArray(chatIds) && chatIds.length != 0 && chatIds.map((obj, idx) => (
 					<div className="previous-chat-box" key={idx}>
 						{obj["_id"] == currentChatIndex ? <button onClick={(e) => handleSettingChat(obj["_id"])} style={{ "fontSize": "30px", color: "lime", textDecoration: "underline", fontWeight: "bold" }}>{obj["title"]}</button> :
 							<button onClick={(e) => handleSettingChat(obj["_id"])} style={{ "fontSize": "30px", color: "grey" }}>{obj["title"]}</button>}
