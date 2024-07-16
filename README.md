@@ -18,6 +18,7 @@ Cricket LLM is a web application powered by an LLM model with Retrival Augmented
 - **Player Profile**: Retrieve detailed profiles of cricket players.
 - **Points Tables**: View and analyze points tables for various cricket tournaments.
 - **Latest News**: Stay updated with the latest cricket news.
+- **Chat Room**: Connect and talk with like minded cricket fans.
 
 ## Usage
 
@@ -52,13 +53,19 @@ To stay updated with cricket news:
 1. Check out the latest news section.
 2. Browse through the most recent articles and updates in the world of cricket.
 
+### Chat Room
 
-### Running the project
+To talk anonymously with other like minded people and cricket fans:
+
+1. Check out the chat room feature.
+2. Chat with everyone globally or inside specific rooms.
+
+### Running the project locally
 1. ```git clone https://github.com/TheMajesticWolf/CricketLLM.git```
 2. ```cd backend```
-3. ```echo "MONGO_URI={Your MongoDB URI}" > .env```
+3. ```echo -e "MONGO_URI={Your MongoDB URI}\nACCESS_TOKEN_SECRET={random string}\nREFRESH_TOKEN_SECRET={random string}" > .env```
 4. ```npm i```
-5. ```node_modules/.bin/nodemon server.js```
+5. ```npm start```
 6. ```cd ../frontend```
 7. ```npm i```
 8. ```npm start```
